@@ -1,0 +1,37 @@
+{
+    "editor.formatOnSave": false,
+    "editor.wordWrap": "on",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "eslint.autoFixOnSave": true,
+    "eslint.alwaysShowStatus": true,
+    "eslint.options": {
+        "extenstions": [
+            ".html",
+            ".js",
+            ".vue",
+            ".ts"
+        ]
+    },
+    "eslint.validate": [
+        {
+            "language": "html",
+            "autoFix": true
+        },
+        {
+            "language": "javascript",
+            "autoFix": true
+        },
+        {
+            "language": "vue",
+            "autoFix": true
+        },
+        {
+            "language": "typescript",
+            "autoFix": true
+        },
+    ],
+    "vetur.validation.template": false,
+    "liveServer.settings.port": 5501
+}
