@@ -65,7 +65,7 @@ export default {
       steps: [
         { title: '基本資料',
           fields: [
-            { type: 'TextInput', name: 'username', text: '使用者名稱', rules: 'required', value: '' },
+            { type: 'TextInput', name: 'username', text: '使用者名稱', rules: 'required|min-charts:2', value: '' },
             { type: 'GenderInput', name: 'gender', text: '性別', rules: 'required', value: '0' }
           ]
         }, {
