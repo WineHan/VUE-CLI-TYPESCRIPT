@@ -7,49 +7,24 @@
     <HomeDocument msg="Welcome to Your Vue.js App" />
     <br>
     <I18nDocument />
-    <ValidationObserver
-      v-slot="{handleSubmit}"
-      tag="div"
-    >
-      <h2>
-        {{ currentStep.title }}
-      </h2>
-      <form @submit.prevent="handleSubmit(nextStep)">
-        <component
-          :is="field.type"
-          v-for="field in currentStep.fields"
-          :key="field.name"
-          v-model="field.value"
-          :name="field.name"
-          :text="field.text"
-          :rules="field.rules"
-        />
-        <br>
-        <div>
-          <button
-            v-if="step!==0"
-            type="button"
-            @click="step--"
-          >
-            上一步
-          </button>
-          <button
-            type="submit"
-          >
-            {{ isLastStep? "送出": "下一步" }}
-          </button>
-        </div>
-      </form>
-    </ValidationObserver>
+    <br>
+    <TextInput
+      v-model="email"
+      :v="$v.email"
+    />
+    <RadioInput
+      v-model="gender"
+      :v="$v.gender"
+    />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 import HomeDocument from '@/components/HomeDocument.vue'
 import I18nDocument from '@/components/I18nDocument'
-import TextInput from '../components/validate/TextInput'
-import GenderInput from '../components/validate/GenderInput'
+import TextInput from '../components/vuelidate/TextInput'
+import RadioInput from '../components/vuelidate/RadioInput'
+import { required, minLength, between, sameAs, email } from 'vuelidate/lib/validators'
 
 export default {
   name: 'Home',
@@ -57,52 +32,22 @@ export default {
     HomeDocument,
     I18nDocument,
     TextInput,
-    GenderInput
+    RadioInput
   },
   data () {
     return {
       step: 0,
-      steps: [
-        { title: '基本資料',
-          fields: [
-            { type: 'TextInput', name: 'username', text: '使用者名稱', rules: 'required|min:2', value: '' },
-            { type: 'GenderInput', name: 'gender', text: '性別', rules: 'required', value: '0' }
-          ]
-        }, {
-          title: '聯絡資料',
-          fields: [
-            { type: 'TextInput', name: 'email', text: '電子郵件', rules: 'required|email', value: '' },
-            { type: 'TextInput', name: 'mobile', text: '手機', rules: 'required|mobile', value: '' }
-          ]
-        }
-      ]
+      email: '',
+      gender: ''
     }
   },
-  computed: {
-    currentStep () {
-      return this.steps[this.step]
+  validations: {
+    email: {
+      required,
+      email
     },
-    isLastStep () {
-      return this.step === this.steps.length - 1
-    },
-    formData () {
-      return this.steps.reduce((prev, current) => {
-        current.fields.forEach(field => {
-          prev[field.name] = field.value
-        })
-        return prev
-      }, {})
-    }
-  },
-  methods: {
-    submit () {
-    },
-    nextStep () {
-      if (this.isLastStep) {
-        this.submit()
-      } else {
-        this.step++
-      }
+    gender: {
+      required
     }
   }
 

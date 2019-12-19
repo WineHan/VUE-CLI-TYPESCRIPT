@@ -4,12 +4,6 @@
       <router-link to="/">
         {{ $t('Index.__index_button') }} |
       </router-link>
-      <router-link to="/I18n">
-        i18n
-      </router-link> |
-      <router-link to="/validate">
-        validate
-      </router-link> |
     </div>
     <router-view />
   </div>

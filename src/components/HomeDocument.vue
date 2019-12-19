@@ -4,7 +4,7 @@
     <h2>initial plugins</h2>
     <ul>
       <li>i18n</li>
-      <li>vee-validate</li>
+      <li>vuelidate</li>
       <li>axios</li>
     </ul>
   </div>

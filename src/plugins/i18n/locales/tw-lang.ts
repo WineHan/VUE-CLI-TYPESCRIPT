@@ -4,9 +4,7 @@ export const Index = {
   __switch_button: 'English'
 }
 
-export const FieldsRules = {
-  __field_require: '欄位為必填',
-  __min_require: '請輸入最少 {} 個字',
-  __email_validate: '請輸入正確格式',
-  __mobile_validate: '請輸入正確格式'
+export const validation = {
+  'required': '欄位為必填',
+  email: '請輸入正確{attribute}格式'
 }
